@@ -1,4 +1,4 @@
-# happybuf - **H**appy **Ap*pendable *Py*thon *Buf*fers
+# happybuf - **H**appy **Ap**pendable **Py**thon **Buf**fers
 
 *An abstraction layer for multiple popular serialization formats:*
 
