@@ -35,8 +35,16 @@ While developing, those general resources for using the different backend libs w
 
 ------
 
+If your project doesn't depend on minimal binary storage (in terms of file size),
+or on one of those big cross-platform serialization libraries from above,
+serializing to **JSON** and appending to a [JSON Lines](http://jsonlines.org/) file
+might be an option, too.
+It's human readable, many serialization libs exist like [serpy](https://github.com/clarkduvall/serpy).
+And you can still compress the output stream using lz4 if you need to save storage space.
+
+------
+
 Some more Python libs I found interesting while doing research
 (not necessarily related to this project):
 
 * [protobuf-serialization](https://github.com/alvinchow86/protobuf-serialization-py)
-* [serpy](https://github.com/clarkduvall/serpy)
