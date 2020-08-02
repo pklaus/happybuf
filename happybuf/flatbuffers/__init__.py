@@ -1,5 +1,5 @@
 from pathlib import Path
-import tempfile, os
+import tempfile, os, sys
 import importlib.util
 import flatbuffers
 from flatbuffers.packer import int32
@@ -12,12 +12,8 @@ class Backend:
 
     def target_cls(self, target):
         module, _, cls = target.rpartition(".")
-        module_file = module.replace(".", "/") + ".py"
-        spec = importlib.util.spec_from_file_location(
-            target, Path(self.tmp.name) / Path(module_file)
-        )
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
+        sys.path.append(self.tmp.name)
+        module = importlib.import_module(module)
         Cls = getattr(module, cls)
         return Cls
 
