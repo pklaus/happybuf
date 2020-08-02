@@ -11,6 +11,8 @@ regarding their support of appending (chaining) multiple messages.
 This can be useful when storing serialized data in a binary file that is
 supposed to grow over time.
 
+Further libs: [MessagePack][], [Arrow][], ...
+
 ------
 
 While developing, those general resources for using the different backend libs with Python are useful:
@@ -32,6 +34,8 @@ While developing, those general resources for using the different backend libs w
 [Protocol Buffers]: https://developers.google.com/protocol-buffers/
 [Cap'n Proto]: https://capnproto.org/
 [FlatBuffers]: https://google.github.io/flatbuffers/
+[MessagePack]: https://msgpack.org/
+[arrow]: https://arrow.apache.org/docs/python/data.html#schemas
 
 ------
 
