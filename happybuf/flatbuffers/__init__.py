@@ -24,16 +24,15 @@ class Backend:
     def write(self, f, target, data):
         target = self.target_cls(target)()
         builder = flatbuffers.Builder(1024)
+
         for key, value in data.items():
             setattr(target, key, value)
             # HERE, we would have to treat the nested stuff properly...
             # (list of phone numbers, to be added as list of address_book.Phone.PhoneT))
+
         builder.FinishSizePrefixed(target.Pack(builder))
         buf = builder.Output()
-
         f.write(buf)
-        # FinishSizePrefixed
-        # https://github.com/google/flatbuffers/blob/master/python/flatbuffers/builder.py
 
     def read_multiple(self, f, target):
         buf = f.read()
