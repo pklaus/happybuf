@@ -1,6 +1,6 @@
 """
-Contains code from https://stackoverflow.com/a/34539706/183995
-and https://stackoverflow.com/a/59073600/183995
+Incorporates code from
+https://stackoverflow.com/q/2340730/183995
 """
 
 from pathlib import Path
