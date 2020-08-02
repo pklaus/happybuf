@@ -13,13 +13,6 @@ supposed to grow over time.
 
 ------
 
-Some more Python libs I found interesting while doing research:
-
-* [protobuf-serialization](https://github.com/alvinchow86/protobuf-serialization-py)
-* [serpy](https://github.com/clarkduvall/serpy)
-
-------
-
 While developing, those general resources for using the different backend libs with Python are useful:
 
 * Protocol Buffers:
@@ -39,3 +32,11 @@ While developing, those general resources for using the different backend libs w
 [Protocol Buffers]: https://developers.google.com/protocol-buffers/
 [Cap'n Proto]: https://capnproto.org/
 [FlatBuffers]: https://google.github.io/flatbuffers/
+
+------
+
+Some more Python libs I found interesting while doing research
+(not necessarily related to this project):
+
+* [protobuf-serialization](https://github.com/alvinchow86/protobuf-serialization-py)
+* [serpy](https://github.com/clarkduvall/serpy)
