@@ -62,10 +62,9 @@ class Backend:
     def read_multiple(self, f, target):
         message = self.target_cls(target)()
         while raw_varint32 := readRawVarint32(f):
-            if raw_varint32:
-                size = getSize(raw_varint32)
-                data = f.read(size)
-                if len(data) < size:
-                    raise Exception("Unexpected end of file")
-                message = message.FromString(data)
+            size = getSize(raw_varint32)
+            data = f.read(size)
+            if len(data) < size:
+                raise Exception("Unexpected end of file")
+            message = message.FromString(data)
             yield message
