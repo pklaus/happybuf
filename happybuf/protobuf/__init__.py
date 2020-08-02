@@ -13,11 +13,12 @@ from google.protobuf.internal import decoder
 def getSize(raw_varint32):
     result, shift = 0, 0
     b = raw_varint32[0]
-    result |= (b & 0x7f) << shift
+    result |= (b & 0x7F) << shift
     return result
 
+
 def readRawVarint32(stream):
-    mask = 0x80 # (1 << 7)
+    mask = 0x80  # (1 << 7)
     raw_varint32 = b""
     while 1:
         b = stream.read(1)
@@ -25,19 +26,24 @@ def readRawVarint32(stream):
             break
         raw_varint32 += b
         if not (ord(b) & mask):
-            #we found a byte starting with a 0, which means it's the last byte of this varint
+            # we found a byte starting with a 0, which means it's the last byte of this varint
             break
     return raw_varint32
+
 
 class Backend:
     def __init__(self, schemafile):
         self.tmp = tempfile.TemporaryDirectory()
         tmp_schemafile = self.tmp.name + "/schema.proto"
         shutil.copy(schemafile, tmp_schemafile)
-        os.system(f"protoc --python_out={self.tmp.name} -I {self.tmp.name} schema.proto")
+        os.system(
+            f"protoc --python_out={self.tmp.name} -I {self.tmp.name} schema.proto"
+        )
 
     def target_cls(self, target):
-        spec = importlib.util.spec_from_file_location(target, self.tmp.name + "/schema_pb2.py")
+        spec = importlib.util.spec_from_file_location(
+            target, self.tmp.name + "/schema_pb2.py"
+        )
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         Cls = getattr(module, target)
@@ -63,5 +69,3 @@ class Backend:
                     raise Exception("Unexpected end of file")
                 message = message.FromString(data)
             yield message
-
-

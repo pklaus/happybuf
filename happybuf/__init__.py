@@ -1,9 +1,9 @@
-
 from typing import List, Union
 
-#from .protobuf import Backend as ProtoBackend
-#from .flatbuffers import Backend as FlatBackend
-#from .capnproto import Backend as CapnBackend
+# from .protobuf import Backend as ProtoBackend
+# from .flatbuffers import Backend as FlatBackend
+# from .capnproto import Backend as CapnBackend
+
 
 class Happybuf:
     def __init__(self, schema, backend=None):
