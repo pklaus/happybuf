@@ -11,7 +11,17 @@ regarding their support of appending (chaining) multiple messages.
 This can be useful when storing serialized data in a binary file that is
 supposed to grow over time.
 
-Help for using the libs with Python:
+------
+
+Some more Python libs I found interesting while doing research:
+
+* [protobuf-serialization](https://github.com/alvinchow86/protobuf-serialization-py)
+* [serpy](https://github.com/clarkduvall/serpy)
+
+------
+
+While developing, those general resources for using the different backend libs with Python are useful:
+
 * Protocol Buffers:
     * <https://googleapis.dev/python/protobuf/latest/>
     * <https://developers.google.com/protocol-buffers/docs/reference/python-generated>
@@ -29,10 +39,3 @@ Help for using the libs with Python:
 [Protocol Buffers]: https://developers.google.com/protocol-buffers/
 [Cap'n Proto]: https://capnproto.org/
 [FlatBuffers]: https://google.github.io/flatbuffers/
-
-------
-
-Some more Python libs I found interesting while doing research:
-
-* [protobuf-serialization](https://github.com/alvinchow86/protobuf-serialization-py)
-* [serpy](https://github.com/clarkduvall/serpy)
