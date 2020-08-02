@@ -1,0 +1,25 @@
+// Example Addressbook
+// https://google.github.io/flatbuffers/md__schemas.html
+// https://github.com/google/flatbuffers/blob/master/samples/monster.fbs
+
+namespace address_book;
+
+enum Type:byte { mobile = 0, home, work = 2 }
+
+table AddressBook {
+  people:[Person];
+}
+
+table Person {
+  id:long;
+  name:string;
+  email:string;
+  phones:[PhoneNumber];
+}
+
+table PhoneNumber {
+  number:string;
+  type:Type = mobile;
+}
+
+root_type Person;
