@@ -1,35 +1,8 @@
-"""
-Incorporates code from
-https://stackoverflow.com/q/2340730/183995
-"""
-
 from pathlib import Path
 import tempfile, os, shutil
 import importlib.util
 from google.protobuf.internal import encoder
 from google.protobuf.internal import decoder
-
-
-def getSize(raw_varint32):
-    result, shift = 0, 0
-    b = raw_varint32[0]
-    result |= (b & 0x7F) << shift
-    return result
-
-
-def readRawVarint32(stream):
-    mask = 0x80  # (1 << 7)
-    raw_varint32 = b""
-    while 1:
-        b = stream.read(1)
-        if len(b) == 0:
-            break
-        raw_varint32 += b
-        if not (ord(b) & mask):
-            # we found a byte starting with a 0, which means it's the last byte of this varint
-            break
-    return raw_varint32
-
 
 class Backend:
     def __init__(self, schemafile):
@@ -61,10 +34,10 @@ class Backend:
 
     def read_multiple(self, f, target):
         message = self.target_cls(target)()
-        while raw_varint32 := readRawVarint32(f):
-            size = getSize(raw_varint32)
-            data = f.read(size)
-            if len(data) < size:
-                raise Exception("Unexpected end of file")
-            message = message.FromString(data)
+        data = f.read()
+        pos = 0
+        while pos < len(data):
+            size, pos = decoder._DecodeVarint32(data, pos)
+            message = message.FromString(data[pos:pos+size])
+            pos += size
             yield message
